@@ -1,6 +1,10 @@
 # Example: reuse your existing OpenAI setup
 import os
 from openai import OpenAI
+#import tkinter 
+#from tkinter import *
+#from tkinter import messagebox
+#from tkinter import ttk
 
 # declaring varibles 
 
@@ -26,5 +30,17 @@ def getllmmessege():
 
   print(completion.choices[0].message)
 
+#def gui():
+#  window = Tk()
+#  frm = ttk.Frame(window, padding=10)
+#  frm.grid()
+#  ttk.Label(frm, text="Hello World!").grid(column=0, row=0)
+#  ttk.Button(frm, text="Quit", command=window.destroy).grid(column=1, row=0)
+#  window.mainloop()
 
+  
+
+
+#gui()
 getllmmessege()
+
