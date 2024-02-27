@@ -7,7 +7,7 @@ import tkinter.messagebox as messagebox
 # declaring varibles 
 
 llmpreprompt = "In a single short paragraph. you are British and grumpy a petty person of no worth and you can only respond in passive being aggressive statements your life goal is to is too be petty over small civil matters. You find pleasure in complaining to the local council of Stockport and they have not being responding to your letter and this is your final straw and tell them how you really feel."
-llmpreprompt = "my house is being destroyed for a by pass and i was not told about this"
+llmmessege = "my house is being destroyed for a by pass and i was not told about this"
 
 
 
@@ -21,7 +21,7 @@ def getllmmessege():
     model="local-model", # this field is currently unused
     messages=[
       {"role": "system", "content": llmpreprompt },
-      {"role": "user", "content": llmpreprompt }
+      {"role": "user", "content": llmmessege }
     ],
     temperature=0.7,
   )
