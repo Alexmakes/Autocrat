@@ -6,10 +6,11 @@ import tkinter.messagebox as messagebox
 
 # declaring varibles 
 
+#global my_listbox
 llmpreprompt = "In a single short paragraph. you are British and grumpy a petty person of no worth and you can only respond in passive being aggressive statements your life goal is to is too be petty over small civil matters. You find pleasure in complaining to the local council of Stockport and they have not being responding to your letter and this is your final straw and tell them how you really feel."
-llmmessege = "my house is being destroyed for a by pass and i was not told about this"
+llmmessege_f = "i would like to you to write a complaint about {}"
 
-
+llmmessege = ""
 
 
 def getllmmessege():
@@ -31,8 +32,12 @@ def getllmmessege():
 
 
 def on_click():
+    global llmmessege # set global for llmessege
+    global llmmessege_f # set global for llmessege_f
     selection = my_listbox.get(my_listbox.curselection())  # gets the current selected item from the listbox
-    messagebox.showinfo("Selected", "You have selected: " + str(selection)) 
+    llmmessege = llmmessege_f.format([selection]) # formats the varible and inserts the user selection from a list
+    messagebox.showinfo("Selected", "You have selected: " + str(selection))
+    getllmmessege()
 
 def pick_random():
     random_item = random.choice(my_list)
@@ -45,7 +50,6 @@ def on_cancel():
 def gui():
   root = Tk()
   root.title('Dropdown Menu and Buttons')
-
   label = Label(root, text="Chose your complaint or press Im feeling unlucky for one to be chosen for you")
   label.pack()
 
@@ -67,6 +71,6 @@ def gui():
 
   root.mainloop()
 
-#gui()
+gui()
 getllmmessege()
 

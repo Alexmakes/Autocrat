@@ -66,5 +66,5 @@ def gui():
     
     root.mainloop()
 
-#gui()  # Uncomment this line to run the GUI
-get_llmmessege()  # Uncomment this line to get a response from OpenAI's GPT-3 API
+gui()  # Uncomment this line to run the GUI
+#get_llmmessege()  # Uncomment this line to get a response from OpenAI's GPT-3 API
