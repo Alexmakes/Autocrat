@@ -157,3 +157,14 @@ minor issues
 47. neighbours hedge too tall
 48. neighbours hedge too short
 49. corner shop does stock my favourite biscuits 
+
+# 25022024 adding git and variables 
+
+added it to my git i used deepseek 7b model to help with making the UI as ive not made anything with gui before, after reading the code from the printer in the hackspace i chose too use the same library tkinter. 
+
+# 29022024 it works and its ugly 
+
+did some coding on the way home from the space and bashed out a GUI with the help of deep seek as i not used that library before and it works. 
+![](attachments/Pasted%20image%2020240229151606.png)
+
+next task is too get the ui to call the right functions with the data selected by the user 
