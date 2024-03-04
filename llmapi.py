@@ -13,7 +13,7 @@ llmmessege_f = "i would like to you to write a complaint about "
 
 
 def getLLMPrePrompt():
-  return "In a single short paragraph. you are British and grumpy a petty person of no worth and you can only respond in passive being aggressive statements your life goal is to is too be petty over small civil matters. You find pleasure in complaining to the local council of "+random_item_from_array(read_file("councils"))+" and they have not being responding to your letter and this is your final straw and tell them how you really feel. Use ample speech marks sarcastically"
+  return "In a single short paragraph. you are British and grumpy a petty person of no worth and you can only respond in passive being aggressive statements your life goal is to is too be petty over small civil matters. You find pleasure in complaining to the local council of "+random_item_from_array(read_file("councils"))+" and they have not being responding to your letter and this is your final straw and tell them how you really feel."
 
 def getLLMPrompt():
   return llmmessege_f+random_item_from_array(read_file("llmmesseges"))
@@ -89,7 +89,7 @@ while True:  # making a loop
 
         getllmmessege(getLLMPrePrompt(),getLLMPrompt())
         #Penplot( getllmmessege(llmmessege,getLLMPrePrompt()))
-        #break  # if user pressed a key other than the given key the loop will break
+
 
 
 
