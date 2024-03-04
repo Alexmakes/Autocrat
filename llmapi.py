@@ -11,11 +11,11 @@ import random
 llmpreprompt = "In a single short paragraph. you are British and grumpy a petty person of no worth and you can only respond in passive being aggressive statements your life goal is to is too be petty over small civil matters. You find pleasure in complaining to the local council of Stockport and they have not being responding to your letter and this is your final straw and tell them how you really feel."
 llmmessege_f = "i would like to you to write a complaint about "
 
-#llmmessege = ""
+llmmessege = ""
 
 
 
-def getllmmessege():
+def getllmmessege(prompt,message):
 
   # Point to the local server
   client = OpenAI(base_url="http://localhost:1234/v1", api_key="not-needed")
@@ -23,14 +23,13 @@ def getllmmessege():
   completion = client.chat.completions.create(
     model="local-model", # this field is currently unused
     messages=[
-      {"role": "system", "content": llmpreprompt },
-      {"role": "user", "content": llmmessege }
+      {"role": "system", "content": prompt },
+      {"role": "user", "content": message }
     ],
     temperature=0.7,
   )
 
   print(completion.choices[0].message)
-  llmmessege = ""
 
 
 
@@ -93,7 +92,7 @@ while True:  # making a loop
         print('You Pressed the correct Key!')
         llmmessege = llmmessege_f+random_item_from_array(read_file("llmmesseges")) # formats the varible and inserts the user selection from a list
         print(llmmessege)
-        getllmmessege()
+        getllmmessege(llmmessege,llmpreprompt)
 
         #break  # if user pressed a key other than the given key the loop will break
 
