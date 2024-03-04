@@ -48,11 +48,12 @@ def read_file(promtfile): # this function reads the raw file of all the compalin
 
 
 while True:  # making a loop
-        keyboard.wait('q')  # if key 'q' is pressed
-        print('You Pressed the correct Key!')
+        #keyboard.wait('q')  # if key 'q' is pressed # on the real day un comment this and remove if blar blar
+        if input()=="q":
+          print('You Pressed the correct Key!')
 
-        getllmmessege(getLLMPrePrompt(),getLLMPrompt()) # passes the funcitions to the openai libary to genrate the messege 
-        #Penplot( getllmmessege(llmmessege,getLLMPrePrompt()))
+          getllmmessege(getLLMPrePrompt(),getLLMPrompt()) # passes the funcitions to the openai libary to genrate the messege
+          #Penplot( getllmmessege(llmmessege,getLLMPrePrompt()))
 
 
 
