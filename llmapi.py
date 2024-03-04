@@ -8,23 +8,26 @@ import random
 
 # declaring varibles 
 
-llmpreprompt = "In a single short paragraph. you are British and grumpy a petty person of no worth and you can only respond in passive being aggressive statements your life goal is to is too be petty over small civil matters. You find pleasure in complaining to the local council of Stockport and they have not being responding to your letter and this is your final straw and tell them how you really feel."
+#llmpreprompt = "In a single short paragraph. you are British and grumpy a petty person of no worth and you can only respond in passive being aggressive statements your life goal is to is too be petty over small civil matters. You find pleasure in complaining to the local council of Stockport and they have not being responding to your letter and this is your final straw and tell them how you really feel."
 llmmessege_f = "i would like to you to write a complaint about "
 
-llmmessege = ""
 
+def getLLMPrePrompt():
+  return "In a single short paragraph. you are British and grumpy a petty person of no worth and you can only respond in passive being aggressive statements your life goal is to is too be petty over small civil matters. You find pleasure in complaining to the local council of "+random_item_from_array(read_file("councils"))+" and they have not being responding to your letter and this is your final straw and tell them how you really feel. Use ample speech marks sarcastically"
 
+def getLLMPrompt():
+  return llmmessege_f+random_item_from_array(read_file("llmmesseges"))
 
-def getllmmessege(prompt,message):
-
+def getllmmessege(preprompt,prompt):
+  print("PrePrompt:"+preprompt+"\n"+"Prompt:"+prompt) # Promt is the prepromt sent to the LLM studio after adding random council.
   # Point to the local server
   client = OpenAI(base_url="http://localhost:1234/v1", api_key="not-needed")
 
   completion = client.chat.completions.create(
     model="local-model", # this field is currently unused
     messages=[
-      {"role": "system", "content": prompt },
-      {"role": "user", "content": message }
+      {"role": "system", "content": preprompt },
+      {"role": "user", "content": prompt }
     ],
     temperature=0.7,
   )
@@ -33,18 +36,11 @@ def getllmmessege(prompt,message):
 
 
 
-def on_click():
-    global llmmessege # set global for llmessege
-    global llmmessege_f # set global for llmessege_f
-    selection = my_listbox.get(my_listbox.curselection())  # gets the current selected item from the listbox
-    llmmessege = llmmessege_f.format([selection]) # formats the varible and inserts the user selection from a list
-    getllmmessege()
-
 """
 def pick_random():
     random_item = random.choice(my_list)
     my_listbox.insert(END, random_item) # adds a new item to the listbox
-    messagebox.showinfo("Random Item", "A random line has been added: " + str(random_item)) 
+    messagebox.showinfo("Random Item", "A random line has been added: " + str(random_item))
 
  
 def on_cancel():
@@ -90,10 +86,9 @@ while True:  # making a loop
       # used try so that if user pressed other than the given key error will not be shown
         keyboard.wait('q')  # if key 'q' is pressed
         print('You Pressed the correct Key!')
-        llmmessege = llmmessege_f+random_item_from_array(read_file("llmmesseges")) # formats the varible and inserts the user selection from a list
-        print(llmmessege)
-        getllmmessege(llmmessege,llmpreprompt)
 
+        getllmmessege(getLLMPrePrompt(),getLLMPrompt())
+        #Penplot( getllmmessege(llmmessege,getLLMPrePrompt()))
         #break  # if user pressed a key other than the given key the loop will break
 
 
