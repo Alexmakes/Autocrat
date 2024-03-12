@@ -33,8 +33,16 @@ def getllmmessege(preprompt,prompt): # the code for interfacing with open ai it 
   )
 
   print(completion.choices[0].message)
+  return completion.choices[0].message  # Return completion message instead of printing it
 
+def convert_to_markdown(message):
+    # Function to convert the completion message to Markdown format
+    return f"```markdown\n{message}\n```" 
 
+def save_to_markdown_file(markdown_content, filename):
+    # Function to save the Markdown content to a file
+    with open(filename, "w") as file:
+        file.write(markdown_content)
 
 def random_item_from_array(array): # this function choses a random postion in an array of any lenght
     return array[random.randrange(0,len(array),1)]
@@ -52,7 +60,15 @@ while True:  # making a loop
         if input()=="q":
           print('You Pressed the correct Key!')
 
-          getllmmessege(getLLMPrePrompt(),getLLMPrompt()) # passes the funcitions to the openai libary to genrate the messege
+          preprompt = getLLMPrePrompt()  # Get the pre prompt
+          prompt = getLLMPrompt()  # Get the prompt
+
+          #getllmmessege(getLLMPrePrompt(),getLLMPrompt()) # passes the funcitions to the openai libary to genrate the messege
+          completion_message = getllmmessege(getLLMPrePrompt(),getLLMPrompt()) # passes the funcitions to the openai libary to genrate the messege
+          markdown_content = convert_to_markdown(completion_message)
+          save_to_markdown_file(markdown_content, "output.md")
+          #time to use the os function too convert the 
+          #remove me when i reboot os.system('')
           #Penplot( getllmmessege(llmmessege,getLLMPrePrompt()))
 
 
