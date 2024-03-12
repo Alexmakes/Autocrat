@@ -5,6 +5,7 @@ from openai import OpenAI
 #import tkinter.messagebox as messagebox
 import keyboard
 import random
+from ttgLib.TextToGcode import ttg
 
 # declaring varibles 
 
@@ -32,12 +33,13 @@ def getllmmessege(preprompt,prompt): # the code for interfacing with open ai it 
     temperature=0.7,
   )
 
-  print(completion.choices[0].message)
+  print(completion.choices[0].message.content)
   return completion.choices[0].message  # Return completion message instead of printing it
 
 def convert_to_markdown(message):
     # Function to convert the completion message to Markdown format
-    return f"```markdown\n{message}\n```" 
+    completed_message = message.replace("\n\n", "\n")
+    return f"testing\n{completed_message}\n" 
 
 def save_to_markdown_file(markdown_content, filename):
     # Function to save the Markdown content to a file
@@ -65,10 +67,15 @@ while True:  # making a loop
 
           #getllmmessege(getLLMPrePrompt(),getLLMPrompt()) # passes the funcitions to the openai libary to genrate the messege
           completion_message = getllmmessege(getLLMPrePrompt(),getLLMPrompt()) # passes the funcitions to the openai libary to genrate the messege
-          markdown_content = convert_to_markdown(completion_message)
+          #print(type(completion_message))
+          markdown_content = convert_to_markdown(completion_message.content) #.content is the messege in 
           save_to_markdown_file(markdown_content, "output.md")
+
+          
+          #gcode = ttg("Text to Gcode",1,0,"return",1).toGcode("M02 S500","M05 S0","G0","G1")
+          #print(gcode)
           #time to use the os function too convert the 
-          #remove me when i reboot os.system('')
+          # remove to get os.system('')
           #Penplot( getllmmessege(llmmessege,getLLMPrePrompt()))
 
 
