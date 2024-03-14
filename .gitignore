@@ -13,3 +13,9 @@ LM*
 llama*
 
 
+LabelPrinter.py
+.vscode/launch.json
+.idea/modules.xml
+.idea/misc.xml
+.idea/inspectionProfiles/profiles_settings.xml
+.idea/Autocrat.iml
