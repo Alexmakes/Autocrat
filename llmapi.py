@@ -39,12 +39,26 @@ def getllmmessege(preprompt,prompt): # the code for interfacing with open ai it 
 def convert_to_markdown(message):
     # Function to convert the completion message to Markdown format
     completed_message = message.replace("\n\n", "\n")
+    #completed_message = file.write(read_file("frontmatter")+completed_message+read_file("bottommatter"))
     return f"testing\n{completed_message}\n" 
 
 def save_to_markdown_file(markdown_content, filename):
     # Function to save the Markdown content to a file
-    with open(filename, "w") as file:
-        file.write(markdown_content)
+    #front=read_file("frontmatter")
+    front=open("frontmatter","r")
+    #back=read_file("bottommatter")
+    back=open("bottommatter","r")
+    file=open(filename, "a")
+        #file.write(read_file("frontmatter")+markdown_content+read_file("bottommatter")) # reads the front and bottom and cantonate them on to the messege giving the markdown file front matter for style and formating
+        #file.write(markdown_content)
+    
+    # this is a hacky way of doing it but was not working otherwise 
+    file.writelines(front)
+    file.write("\n")
+    file.writelines(markdown_content)
+    file.write("\n")
+    file.writelines(back)
+    file.close()
 
 def random_item_from_array(array): # this function choses a random postion in an array of any lenght
     return array[random.randrange(0,len(array),1)]
@@ -81,10 +95,8 @@ while True:  # making a loop
 
 
 
-
 #print(random_item_from_array(read_file("llmmesseges")))
 #print(read_file("llmmesseges"))
 #gui()
 
 #getllmmessege()
-
