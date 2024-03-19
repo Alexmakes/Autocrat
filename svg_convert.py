@@ -1,5 +1,4 @@
 import svgwrite
-from svgwrite import hershey
 
 def mm_to_svg_units(mm):
     # Conversion factor from millimeters to SVG units (1 mm = 3.543307 SVG units)
@@ -14,15 +13,15 @@ def text_to_svg(text, font_size_mm, output_file="output.svg"):
     font_size = mm_to_svg_units(font_size_mm)
     
     # Create SVG drawing with A4 dimensions
-    dwg = svgwrite.Drawing(output_file, size=(f"{a4_width_mm}mm", f"{a4_height_mm}mm"))
+    dwg = svgwrite.Drawing(output_file, size=(mm_to_svg_units(a4_width_mm), mm_to_svg_units(a4_height_mm)))
     
     # Calculate text position to center it on A4 page
     text_width = len(text) * font_size * 0.65  # Approximate width of text
-    text_x = (a4_width_mm - text_width) / 2
-    text_y = a4_height_mm / 2
+    text_x = (mm_to_svg_units(a4_width_mm) - text_width) / 2
+    text_y = mm_to_svg_units(a4_height_mm) / 2
     
-    # Add Hershey Text to SVG drawing
-    dwg.add(hershey.text(text, insert=(f"{text_x}mm", f"{text_y}mm"), size=font_size))
+    # Add text to SVG drawing
+    dwg.add(dwg.text(text, insert=(text_x, text_y), font_size=font_size))
     
     # Save SVG file
     dwg.save()
