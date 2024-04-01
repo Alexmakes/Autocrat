@@ -6,18 +6,26 @@ from openai import OpenAI
 import keyboard
 import random
 from ttgLib.TextToGcode import ttg
+import numpy as np
+from handwriting_synthesis.hand import Hand
+
 
 # declaring varibles 
 
 #llmpreprompt = "In a single short paragraph. you are British and grumpy a petty person of no worth and you can only respond in passive being aggressive statements your life goal is to is too be petty over small civil matters. You find pleasure in complaining to the local council of Stockport and they have not being responding to your letter and this is your final straw and tell them how you really feel."
-llmmessege_f = "i would like to you to write a complaint about "
+#llmmessege_f = "in the format of Haiku i would like to you to write a complaint about "
+llmmessege_f = "in the format of a short poem i would like to you to write a complaint about "
+#llmmessege_f = "in the format of a short poem i would like to you to write a complaint about why i can not get a refund on my train ticket and how unfair it is for you too refuse to give me back my money for a unused train ticket "
 
 
 def getLLMPrePrompt(): # a function that returns the pre prompt so its esay to edit if it needs refining
-  return "In a single short paragraph. you are British and grumpy a petty person of no worth and you can only respond in passive being aggressive statements your life goal is to is too be petty over small civil matters. You find pleasure in complaining to the local council of "+random_item_from_array(read_file("councils"))+" and they have not being responding to your letter and this is your final straw and tell them how you really feel."
+  #return "In a single short paragraph. you are British and grumpy a petty person of no worth and you can only respond in passive being aggressive statements your life goal is to is too be petty over small civil matters. You find pleasure in complaining to the local council of "+random_item_from_array(read_file("llmapi/councils"))+" and they have not being responding to your letter and this is your final straw and tell them how you really feel."
+  return "you are British and grumpy a petty person of no worth and you can only respond in passive being aggressive statements your life goal is to is too be petty over small civil matters. You find pleasure in complaining to the local council of "+random_item_from_array(read_file("llmapi/councils"))+" and they have not being responding to your letter and this is your final straw and tell them how you really feel." # edit it in to compain about the cointcel 
+  #return "you are British and grumpy a petty person of no worth and you can only respond in passive being aggressive statements your life goal is to is too be petty over small civil matters. You find pleasure in complaining " # edit this in to make it not compain about the counticel 
 
 def getLLMPrompt(): # same as pre promt but for the promt this also reads the file and choses a random compaint
-  return llmmessege_f+random_item_from_array(read_file("llmmesseges"))
+  return llmmessege_f+random_item_from_array(read_file("llmapi/llmmesseges")) # edit this in for use at EMF
+  #return llmmessege_f # edit this in for use of custom messeges
 
 def getllmmessege(preprompt,prompt): # the code for interfacing with open ai it picky about the inputs being strig
   print("PrePrompt:"+preprompt+"\n"+"Prompt:"+prompt) # prints out the pre promp and the promt 
@@ -45,9 +53,9 @@ def convert_to_markdown(message):
 def save_to_markdown_file(markdown_content, filename):
     # Function to save the Markdown content to a file
     #front=read_file("frontmatter")
-    front=open("frontmatter","r")
+    front=open("llmapi/frontmatter","r")
     #back=read_file("bottommatter")
-    back=open("bottommatter","r")
+    back=open("llmapi/bottommatter","r")
     file=open(filename, "a")
         #file.write(read_file("frontmatter")+markdown_content+read_file("bottommatter")) # reads the front and bottom and cantonate them on to the messege giving the markdown file front matter for style and formating
         #file.write(markdown_content)
@@ -71,6 +79,29 @@ def read_file(promtfile): # this function reads the raw file of all the compalin
         raise Exception("File not found")
 
 
+def split_string(text, chunk_size=73):
+    words = text.split()
+    chunks = []
+    current_chunk = ""
+    
+    for word in words:
+        if len(current_chunk) + len(word) <= chunk_size:
+            if current_chunk:
+                current_chunk += " " + word
+            else:
+                current_chunk += word
+        else:
+            chunks.append(current_chunk)
+            current_chunk = word
+
+    if current_chunk:
+        chunks.append(current_chunk)
+    
+    return chunks
+
+
+
+
 while True:  # making a loop
         #keyboard.wait('q')  # if key 'q' is pressed # on the real day un comment this and remove if blar blar
         if input()=="q":
@@ -81,15 +112,64 @@ while True:  # making a loop
 
           #getllmmessege(getLLMPrePrompt(),getLLMPrompt()) # passes the funcitions to the openai libary to genrate the messege
           completion_message = getllmmessege(getLLMPrePrompt(),getLLMPrompt()) # passes the funcitions to the openai libary to genrate the messege
-          #print(type(completion_message))
-          markdown_content = convert_to_markdown(completion_message.content) #.content is the messege in 
-          save_to_markdown_file(markdown_content, "output.md")
 
-          
+
+          #print(type(completion_message))
+
+          #markdown_content = convert_to_markdown(completion_message.content) #.content is the messege in 
+
+          #save_to_markdown_file(markdown_content, "llmapi_output/output.md") # no longer is used
+
+
+
+          # prints the output of the LLM formated nicly 
+          print(completion_message.content)
+          #chat gpt genrated code for the next 3 lines 
+          result = split_string(completion_message.content)
+          lines = []
+          for chunk in result: # for loop to append the chuck to the last one with a max of 70 char
+            print(chunk)
+          # start the handwriting demo code
+          #lines = [completion_message.content]
+            lines.append(chunk+"")
+          #lines = ["this is a test"]
+          """"
+          biases = [.75 for _ in lines]
+          styles = [9 for _ in lines]
+          stroke_colors = ['red', 'green', 'black', 'blue']
+          stroke_widths = [1, 2, 1, 2]
+
+          hand = Hand()
+          hand.write(
+              filename='img/llmtest1.svg',
+              lines=lines,
+              biases=biases,
+              styles=styles,
+              stroke_colors=stroke_colors,
+              stroke_widths=stroke_widths
+          )
+          """
+          #fixed bias, varying style
+          #lines = downtown.split("\n")
+          biases = [.75 for i in lines]
+          styles = np.cumsum(np.array([len(i) for i in lines]) == 0).astype(int)
+          stroke_colors = ['red' for i in lines ]
+          hand = Hand()
+          hand.write(
+              filename='img/llmtest1.svg',
+              lines=lines,
+              biases=biases,
+              styles=styles,
+              stroke_colors=stroke_colors,
+          )          
+
+          # start the plot 
+          exec(open("plot.py").read())
+
           #gcode = ttg("Text to Gcode",1,0,"return",1).toGcode("M02 S500","M05 S0","G0","G1")
           #print(gcode)
           #time to use the os function too convert the 
-          os.system('pandoc output.md -o test.pdf')
+          #os.system('pandoc output.md -o test.pdf')
           #Penplot( getllmmessege(llmmessege,getLLMPrePrompt()))
 
 

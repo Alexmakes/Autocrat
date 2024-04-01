@@ -12,7 +12,11 @@ ad-*
 LM*
 llama*
 fonts
-
+hand_gen*
+logs*
+OLD*
+zips*
+venv
 
 LabelPrinter.py
 .vscode/launch.json
