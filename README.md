@@ -17,4 +17,4 @@ final result
  it pen plotting 
 ## my project journal 
 
-[Im lost send future me here](../../Im%20lost%20send%20future%20me%20here.md)
+[Im lost send future me here](Im%20lost%20send%20future%20me%20here.md)
