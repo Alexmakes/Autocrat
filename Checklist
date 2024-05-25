@@ -1,0 +1,10 @@
+on the day check list
+
+1 open LLM studio
+    - bloke dolfin 2.1
+    - chat ML settings
+    - chat python settings
+2 cd into documents/autocrat/
+3 open autokey
+4 focus on terminal
+5 run using python3 llmapi.py
