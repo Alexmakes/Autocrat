@@ -3,7 +3,7 @@
 
 ## build journal
 
-full build [here](http://[alex](http://alexmakes.net/projects/autocrat.html)
+full build [here](http://[alex](http://alexmakes.net/projects/autocrat.html))
 
 ## how this works 
 
