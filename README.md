@@ -1,11 +1,11 @@
 # AutoCrat
  A machine which write poems in the form of formal complaints to a fictional place that is a generated though a local LLM. The poems will be written with a fountain ben by a pen plotter. The poems will be then handed out to the public to keep.
 
-## build journal
+## Build journal
 
-full build [here](http://[alex](http://alexmakes.net/projects/autocrat.html))
+Full build [here](http://[alex](http://alexmakes.net/projects/autocrat.html))
 
-## how this works 
+## How this works 
 
 A local Large Language Model (LLM) called TheBloke Dolphin 2.1 'Mistral' 7B Q6_K hosted within LLM Studio using its OpenAI API Python interface to pass an API call to the LLM to generate responses for my code in llmapi.py.
 
