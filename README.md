@@ -1,5 +1,5 @@
 # AutoCrat
- A machine which write poems in the form of formal complaints to a fictional place that is a generated though a local LLM. The poems will be written with a fountain ben by a pen plotter. The poems will be then handed out to the public to keep.
+A machine which write poems in the form of formal complaints to a fictional place that is a generated though a local LLM. The poems will be written with a fountain ben by a pen plotter. The poems will be then handed out to the public to keep.
 
 ## Build journal
 
@@ -15,6 +15,11 @@ Once the user presses the button 'Q' on the keyboard, the code generates a promp
 Then the response is passed too the handwriting_synthesis [https://github.com/otuva/handwriting-synthesis](https://github.com/otuva/handwriting-synthesis) and that generates a tool path that is cleaned up in plot.py then is sent to the pen plotter plots on to paper via the axidraw api
 
 ![](attachments/Pasted%20image%2020240401221055.png)
-final result 
-![](attachments/Pasted%20image%2020240401221133.png)
- it pen plotting 
+
+## credit
+
+* Leah from hackspace manchester for help with python
+* Henry from hackspace manchester for making the Ai loading screen
+* HuggingFace/TheBloke for release of mistral LLM
+* Github/otuva for patching handwriting-synthesis to modern tensorflow v2 
+* Hackspace Manchester for giving me a place to make this mad project 
