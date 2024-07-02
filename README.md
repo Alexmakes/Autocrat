@@ -3,7 +3,7 @@ A machine which write poems in the form of formal complaints to a fictional plac
 
 ## Build journal
 
-Full build [here](http://[alex](http://alexmakes.net/projects/autocrat.html))
+Full build [here](https://alexmakes.net/projects/autocrat.html)
 
 ## How this works 
 
