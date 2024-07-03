@@ -1,9 +1,5 @@
 # AutoCrat
-A machine which write poems in the form of formal complaints to a fictional place that is a generated though a local LLM. The poems will be written with a fountain ben by a pen plotter. The poems will be then handed out to the public to keep.
-
-## Build journal
-
-Full build [here](https://alexmakes.net/projects/autocrat.html)
+A machine which write poems in the form of formal complaints to a fictional place that is a generated though a local LLM. The poems will be written with a fountain ben by a pen plotter. The poems will be then handed out to the public to keep [here](https://alexmakes.net/projects/autocrat.html).
 
 ## How this works 
 
@@ -23,3 +19,7 @@ Then the response is passed too the handwriting_synthesis [https://github.com/o
 * HuggingFace/TheBloke for release of mistral LLM
 * Github/otuva for patching handwriting-synthesis to modern tensorflow v2 
 * Hackspace Manchester for giving me a place to make this mad project 
+
+# My website
+
+[here](https://alexmakes.net/)
