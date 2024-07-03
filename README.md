@@ -1,5 +1,6 @@
 # AutoCrat
-A machine which write poems in the form of formal complaints to a fictional place that is a generated though a local LLM. The poems will be written with a fountain ben by a pen plotter. The poems will be then handed out to the public to keep [here](https://alexmakes.net/projects/autocrat.html).
+Ever wanted a to wite a formal complaint but too lazy to write one yourself? Well I have a machine for you! Presenting the AutoCrat - your automatic burcrat. Simply press go and sit and relax as it does all the hard work for you.
+More images and video can be found on my site [here](https://alexmakes.net/projects/autocrat.html).
 
 ## How this works 
 
