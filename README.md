@@ -10,7 +10,7 @@ Once the user presses the button 'Q' on the keyboard, the code generates a promp
 
 Then the response is passed too the handwriting_synthesis [https://github.com/otuva/handwriting-synthesis](https://github.com/otuva/handwriting-synthesis) and that generates a tool path that is cleaned up in plot.py then is sent to the pen plotter plots on to paper via the axidraw api
 
-![](attachments/Pasted%20image%2020240401221055.png)
+<img src="attachments/Pasted%20image%2020240401221055.png" width="600" />
 
 ## credit
 
